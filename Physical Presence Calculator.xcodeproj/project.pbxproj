@@ -1,0 +1,654 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		65C00A3D2B387C2B002AB87E /* Physical_Presence_CalculatorApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C00A3C2B387C2B002AB87E /* Physical_Presence_CalculatorApp.swift */; };
+		65C00A412B387C2C002AB87E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 65C00A402B387C2C002AB87E /* Assets.xcassets */; };
+		65C00A452B387C2D002AB87E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 65C00A442B387C2D002AB87E /* Preview Assets.xcassets */; };
+		65C00A4F2B387C2D002AB87E /* Physical_Presence_CalculatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C00A4E2B387C2D002AB87E /* Physical_Presence_CalculatorTests.swift */; };
+		65C00A592B387C2D002AB87E /* Physical_Presence_CalculatorUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C00A582B387C2D002AB87E /* Physical_Presence_CalculatorUITests.swift */; };
+		65C00A5B2B387C2D002AB87E /* Physical_Presence_CalculatorUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C00A5A2B387C2D002AB87E /* Physical_Presence_CalculatorUITestsLaunchTests.swift */; };
+		65C00A682B387DDF002AB87E /* TravelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C00A672B387DDF002AB87E /* TravelData.swift */; };
+		65C00A6A2B387E8B002AB87E /* TravelList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C00A692B387E8B002AB87E /* TravelList.swift */; };
+		65C00A6C2B3997CC002AB87E /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C00A6B2B3997CC002AB87E /* DetailView.swift */; };
+		65C00A6E2B3C12E9002AB87E /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C00A6D2B3C12E9002AB87E /* MainView.swift */; };
+		65C00A702B3C130B002AB87E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C00A6F2B3C130B002AB87E /* ContentView.swift */; };
+		65C00A722B3C240D002AB87E /* EditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C00A712B3C240D002AB87E /* EditView.swift */; };
+		65C00A742B3C3B07002AB87E /* Travel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C00A732B3C3B07002AB87E /* Travel.swift */; };
+		65C00A762B3C3F7E002AB87E /* TravelRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C00A752B3C3F7E002AB87E /* TravelRow.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		65C00A4B2B387C2D002AB87E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 65C00A312B387C2B002AB87E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 65C00A382B387C2B002AB87E;
+			remoteInfo = "Physical Presence Calculator";
+		};
+		65C00A552B387C2D002AB87E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 65C00A312B387C2B002AB87E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 65C00A382B387C2B002AB87E;
+			remoteInfo = "Physical Presence Calculator";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		65C00A392B387C2B002AB87E /* Physical Presence Calculator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Physical Presence Calculator.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		65C00A3C2B387C2B002AB87E /* Physical_Presence_CalculatorApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Physical_Presence_CalculatorApp.swift; sourceTree = "<group>"; };
+		65C00A402B387C2C002AB87E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		65C00A422B387C2D002AB87E /* Physical_Presence_Calculator.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Physical_Presence_Calculator.entitlements; sourceTree = "<group>"; };
+		65C00A442B387C2D002AB87E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		65C00A4A2B387C2D002AB87E /* Physical Presence CalculatorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Physical Presence CalculatorTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		65C00A4E2B387C2D002AB87E /* Physical_Presence_CalculatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Physical_Presence_CalculatorTests.swift; sourceTree = "<group>"; };
+		65C00A542B387C2D002AB87E /* Physical Presence CalculatorUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Physical Presence CalculatorUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		65C00A582B387C2D002AB87E /* Physical_Presence_CalculatorUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Physical_Presence_CalculatorUITests.swift; sourceTree = "<group>"; };
+		65C00A5A2B387C2D002AB87E /* Physical_Presence_CalculatorUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Physical_Presence_CalculatorUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		65C00A672B387DDF002AB87E /* TravelData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelData.swift; sourceTree = "<group>"; };
+		65C00A692B387E8B002AB87E /* TravelList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelList.swift; sourceTree = "<group>"; };
+		65C00A6B2B3997CC002AB87E /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
+		65C00A6D2B3C12E9002AB87E /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		65C00A6F2B3C130B002AB87E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		65C00A712B3C240D002AB87E /* EditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditView.swift; sourceTree = "<group>"; };
+		65C00A732B3C3B07002AB87E /* Travel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Travel.swift; sourceTree = "<group>"; };
+		65C00A752B3C3F7E002AB87E /* TravelRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelRow.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		65C00A362B387C2B002AB87E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		65C00A472B387C2D002AB87E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		65C00A512B387C2D002AB87E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		65C00A302B387C2B002AB87E = {
+			isa = PBXGroup;
+			children = (
+				65C00A3B2B387C2B002AB87E /* Physical Presence Calculator */,
+				65C00A4D2B387C2D002AB87E /* Physical Presence CalculatorTests */,
+				65C00A572B387C2D002AB87E /* Physical Presence CalculatorUITests */,
+				65C00A3A2B387C2B002AB87E /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		65C00A3A2B387C2B002AB87E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				65C00A392B387C2B002AB87E /* Physical Presence Calculator.app */,
+				65C00A4A2B387C2D002AB87E /* Physical Presence CalculatorTests.xctest */,
+				65C00A542B387C2D002AB87E /* Physical Presence CalculatorUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		65C00A3B2B387C2B002AB87E /* Physical Presence Calculator */ = {
+			isa = PBXGroup;
+			children = (
+				65C00A3C2B387C2B002AB87E /* Physical_Presence_CalculatorApp.swift */,
+				65C00A6F2B3C130B002AB87E /* ContentView.swift */,
+				65C00A672B387DDF002AB87E /* TravelData.swift */,
+				65C00A732B3C3B07002AB87E /* Travel.swift */,
+				65C00A692B387E8B002AB87E /* TravelList.swift */,
+				65C00A752B3C3F7E002AB87E /* TravelRow.swift */,
+				65C00A712B3C240D002AB87E /* EditView.swift */,
+				65C00A6D2B3C12E9002AB87E /* MainView.swift */,
+				65C00A6B2B3997CC002AB87E /* DetailView.swift */,
+				65C00A402B387C2C002AB87E /* Assets.xcassets */,
+				65C00A422B387C2D002AB87E /* Physical_Presence_Calculator.entitlements */,
+				65C00A432B387C2D002AB87E /* Preview Content */,
+			);
+			path = "Physical Presence Calculator";
+			sourceTree = "<group>";
+		};
+		65C00A432B387C2D002AB87E /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				65C00A442B387C2D002AB87E /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		65C00A4D2B387C2D002AB87E /* Physical Presence CalculatorTests */ = {
+			isa = PBXGroup;
+			children = (
+				65C00A4E2B387C2D002AB87E /* Physical_Presence_CalculatorTests.swift */,
+			);
+			path = "Physical Presence CalculatorTests";
+			sourceTree = "<group>";
+		};
+		65C00A572B387C2D002AB87E /* Physical Presence CalculatorUITests */ = {
+			isa = PBXGroup;
+			children = (
+				65C00A582B387C2D002AB87E /* Physical_Presence_CalculatorUITests.swift */,
+				65C00A5A2B387C2D002AB87E /* Physical_Presence_CalculatorUITestsLaunchTests.swift */,
+			);
+			path = "Physical Presence CalculatorUITests";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		65C00A382B387C2B002AB87E /* Physical Presence Calculator */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 65C00A5E2B387C2D002AB87E /* Build configuration list for PBXNativeTarget "Physical Presence Calculator" */;
+			buildPhases = (
+				65C00A352B387C2B002AB87E /* Sources */,
+				65C00A362B387C2B002AB87E /* Frameworks */,
+				65C00A372B387C2B002AB87E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Physical Presence Calculator";
+			productName = "Physical Presence Calculator";
+			productReference = 65C00A392B387C2B002AB87E /* Physical Presence Calculator.app */;
+			productType = "com.apple.product-type.application";
+		};
+		65C00A492B387C2D002AB87E /* Physical Presence CalculatorTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 65C00A612B387C2D002AB87E /* Build configuration list for PBXNativeTarget "Physical Presence CalculatorTests" */;
+			buildPhases = (
+				65C00A462B387C2D002AB87E /* Sources */,
+				65C00A472B387C2D002AB87E /* Frameworks */,
+				65C00A482B387C2D002AB87E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				65C00A4C2B387C2D002AB87E /* PBXTargetDependency */,
+			);
+			name = "Physical Presence CalculatorTests";
+			productName = "Physical Presence CalculatorTests";
+			productReference = 65C00A4A2B387C2D002AB87E /* Physical Presence CalculatorTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		65C00A532B387C2D002AB87E /* Physical Presence CalculatorUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 65C00A642B387C2D002AB87E /* Build configuration list for PBXNativeTarget "Physical Presence CalculatorUITests" */;
+			buildPhases = (
+				65C00A502B387C2D002AB87E /* Sources */,
+				65C00A512B387C2D002AB87E /* Frameworks */,
+				65C00A522B387C2D002AB87E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				65C00A562B387C2D002AB87E /* PBXTargetDependency */,
+			);
+			name = "Physical Presence CalculatorUITests";
+			productName = "Physical Presence CalculatorUITests";
+			productReference = 65C00A542B387C2D002AB87E /* Physical Presence CalculatorUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		65C00A312B387C2B002AB87E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1510;
+				LastUpgradeCheck = 1510;
+				TargetAttributes = {
+					65C00A382B387C2B002AB87E = {
+						CreatedOnToolsVersion = 15.1;
+					};
+					65C00A492B387C2D002AB87E = {
+						CreatedOnToolsVersion = 15.1;
+						TestTargetID = 65C00A382B387C2B002AB87E;
+					};
+					65C00A532B387C2D002AB87E = {
+						CreatedOnToolsVersion = 15.1;
+						TestTargetID = 65C00A382B387C2B002AB87E;
+					};
+				};
+			};
+			buildConfigurationList = 65C00A342B387C2B002AB87E /* Build configuration list for PBXProject "Physical Presence Calculator" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 65C00A302B387C2B002AB87E;
+			productRefGroup = 65C00A3A2B387C2B002AB87E /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				65C00A382B387C2B002AB87E /* Physical Presence Calculator */,
+				65C00A492B387C2D002AB87E /* Physical Presence CalculatorTests */,
+				65C00A532B387C2D002AB87E /* Physical Presence CalculatorUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		65C00A372B387C2B002AB87E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				65C00A452B387C2D002AB87E /* Preview Assets.xcassets in Resources */,
+				65C00A412B387C2C002AB87E /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		65C00A482B387C2D002AB87E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		65C00A522B387C2D002AB87E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		65C00A352B387C2B002AB87E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				65C00A6A2B387E8B002AB87E /* TravelList.swift in Sources */,
+				65C00A6C2B3997CC002AB87E /* DetailView.swift in Sources */,
+				65C00A702B3C130B002AB87E /* ContentView.swift in Sources */,
+				65C00A682B387DDF002AB87E /* TravelData.swift in Sources */,
+				65C00A762B3C3F7E002AB87E /* TravelRow.swift in Sources */,
+				65C00A722B3C240D002AB87E /* EditView.swift in Sources */,
+				65C00A742B3C3B07002AB87E /* Travel.swift in Sources */,
+				65C00A6E2B3C12E9002AB87E /* MainView.swift in Sources */,
+				65C00A3D2B387C2B002AB87E /* Physical_Presence_CalculatorApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		65C00A462B387C2D002AB87E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				65C00A4F2B387C2D002AB87E /* Physical_Presence_CalculatorTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		65C00A502B387C2D002AB87E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				65C00A5B2B387C2D002AB87E /* Physical_Presence_CalculatorUITestsLaunchTests.swift in Sources */,
+				65C00A592B387C2D002AB87E /* Physical_Presence_CalculatorUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		65C00A4C2B387C2D002AB87E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 65C00A382B387C2B002AB87E /* Physical Presence Calculator */;
+			targetProxy = 65C00A4B2B387C2D002AB87E /* PBXContainerItemProxy */;
+		};
+		65C00A562B387C2D002AB87E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 65C00A382B387C2B002AB87E /* Physical Presence Calculator */;
+			targetProxy = 65C00A552B387C2D002AB87E /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		65C00A5C2B387C2D002AB87E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		65C00A5D2B387C2D002AB87E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
+			};
+			name = Release;
+		};
+		65C00A5F2B387C2D002AB87E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "Physical Presence Calculator/Physical_Presence_Calculator.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Physical Presence Calculator/Preview Content\"";
+				DEVELOPMENT_TEAM = 7QY5Z3L4LZ;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.travel";
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
+				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 14.2;
+				MARKETING_VERSION = 0.1;
+				PRODUCT_BUNDLE_IDENTIFIER = "ylh.Physical-Presence-Calculator";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		65C00A602B387C2D002AB87E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "Physical Presence Calculator/Physical_Presence_Calculator.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Physical Presence Calculator/Preview Content\"";
+				DEVELOPMENT_TEAM = 7QY5Z3L4LZ;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.travel";
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
+				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 14.2;
+				MARKETING_VERSION = 0.1;
+				PRODUCT_BUNDLE_IDENTIFIER = "ylh.Physical-Presence-Calculator";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		65C00A622B387C2D002AB87E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 7QY5Z3L4LZ;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				MACOSX_DEPLOYMENT_TARGET = 14.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "ylh.Physical-Presence-CalculatorTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Physical Presence Calculator.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Physical Presence Calculator";
+			};
+			name = Debug;
+		};
+		65C00A632B387C2D002AB87E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 7QY5Z3L4LZ;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				MACOSX_DEPLOYMENT_TARGET = 14.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "ylh.Physical-Presence-CalculatorTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Physical Presence Calculator.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Physical Presence Calculator";
+			};
+			name = Release;
+		};
+		65C00A652B387C2D002AB87E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 7QY5Z3L4LZ;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				MACOSX_DEPLOYMENT_TARGET = 14.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "ylh.Physical-Presence-CalculatorUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "Physical Presence Calculator";
+			};
+			name = Debug;
+		};
+		65C00A662B387C2D002AB87E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 7QY5Z3L4LZ;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				MACOSX_DEPLOYMENT_TARGET = 14.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "ylh.Physical-Presence-CalculatorUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "Physical Presence Calculator";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		65C00A342B387C2B002AB87E /* Build configuration list for PBXProject "Physical Presence Calculator" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				65C00A5C2B387C2D002AB87E /* Debug */,
+				65C00A5D2B387C2D002AB87E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		65C00A5E2B387C2D002AB87E /* Build configuration list for PBXNativeTarget "Physical Presence Calculator" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				65C00A5F2B387C2D002AB87E /* Debug */,
+				65C00A602B387C2D002AB87E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		65C00A612B387C2D002AB87E /* Build configuration list for PBXNativeTarget "Physical Presence CalculatorTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				65C00A622B387C2D002AB87E /* Debug */,
+				65C00A632B387C2D002AB87E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		65C00A642B387C2D002AB87E /* Build configuration list for PBXNativeTarget "Physical Presence CalculatorUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				65C00A652B387C2D002AB87E /* Debug */,
+				65C00A662B387C2D002AB87E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 65C00A312B387C2B002AB87E /* Project object */;
+}

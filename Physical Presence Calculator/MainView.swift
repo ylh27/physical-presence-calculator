@@ -11,7 +11,17 @@ struct MainView: View {
     @ObservedObject var travelData: TravelData
     
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationStack {
+            List {
+                Text("text")
+                Text(travelData.initDate.formatted(date: .complete, time: .omitted))
+                
+            }
+            NavigationLink(destination: InitView(travelData: travelData)) {
+                Text("Change Details")
+            }
+            .navigationTitle("Statistics")
+        }
     }
 }
 

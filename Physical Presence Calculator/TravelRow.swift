@@ -12,18 +12,16 @@ struct TravelRow: View {
     
     var body: some View {
         HStack {
-            Label {
-                VStack(alignment: .leading) {
-                    Text(travel.title)
-                        .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
-                    
-                    Text(travel.date.formatted(date: .abbreviated, time: .shortened))
-                        .font(.caption2)
-                        .foregroundStyle(.secondary)
-                }
-            } icon: {
-                Image(systemName: travel.symbol)
-                    .padding(.trailing, 15)
+            Image(systemName: travel.symbol)
+            Image(systemName: travel.transport)
+                .padding(15)
+            VStack(alignment: .leading) {
+                Text(travel.port)
+                    .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
+                
+                Text(travel.date.formatted(date: .complete, time: .omitted))
+                    .font(.caption2)
+                    .foregroundStyle(.secondary)
             }
         }
     }

@@ -11,14 +11,14 @@ struct Travel: Identifiable, Hashable, Codable {
     var id = UUID()
     var entry: Bool = false
     var port: String = "Montréal"
-    var transport: String = "plane"
-    var date = Date.now
+    var transport: String = "airplane"
+    var date = TravelDate(date: "2020-01-01")!
     
     var symbol: String {
-        if entry == false {
-            return "airplane.departure"
+        if entry == true {
+            return "figure.walk.departure"
         } else {
-            return "airplane.arrival"
+            return "figure.walk.arrival"
         }
     }
     
@@ -28,5 +28,9 @@ struct Travel: Identifiable, Hashable, Codable {
         } else {
             return "Entry at " + port
         }
+    }
+    
+    mutating func setTransport(string: String) {
+        transport = string
     }
 }

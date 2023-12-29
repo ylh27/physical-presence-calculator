@@ -8,15 +8,16 @@
 import SwiftUI
 
 class TravelData: ObservableObject {
+    @Published var initDate: Date = TravelDate(date: "2020-01-01")!
     @Published var travels: [Travel] = [
         Travel(entry: true,
                port: "Greenside",
-               transport: "boat",
-               date: Date(timeIntervalSince1970: 1703678421)),
+               transport: "ferry",
+               date: TravelDate(date: "2020-06-01")!),
         Travel(entry: false,
                port: "Hapwich",
                transport: "car",
-               date: Date(timeIntervalSince1970: 1703678421))
+               date: TravelDate(date: "2020-01-01")!),
     ]
     
     func add(travel: Travel) {
@@ -27,4 +28,11 @@ class TravelData: ObservableObject {
     func remove(travel: Travel) {
         travels.removeAll { $0.id == travel.id }
     }
+}
+
+func TravelDate(date: String) -> Date? {
+    let df = DateFormatter()
+    df.locale = Locale(identifier: "en_US_POSIX")
+    df.dateFormat = "yyyy-MM-dd"
+    return df.date(from: date)
 }

@@ -21,6 +21,7 @@
 		65C00A722B3C240D002AB87E /* EditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C00A712B3C240D002AB87E /* EditView.swift */; };
 		65C00A742B3C3B07002AB87E /* Travel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C00A732B3C3B07002AB87E /* Travel.swift */; };
 		65C00A762B3C3F7E002AB87E /* TravelRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C00A752B3C3F7E002AB87E /* TravelRow.swift */; };
+		65E30D902B3EA70B00D06A06 /* InitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65E30D8F2B3EA70B00D06A06 /* InitView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +60,7 @@
 		65C00A712B3C240D002AB87E /* EditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditView.swift; sourceTree = "<group>"; };
 		65C00A732B3C3B07002AB87E /* Travel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Travel.swift; sourceTree = "<group>"; };
 		65C00A752B3C3F7E002AB87E /* TravelRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelRow.swift; sourceTree = "<group>"; };
+		65E30D8F2B3EA70B00D06A06 /* InitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +119,7 @@
 				65C00A752B3C3F7E002AB87E /* TravelRow.swift */,
 				65C00A712B3C240D002AB87E /* EditView.swift */,
 				65C00A6D2B3C12E9002AB87E /* MainView.swift */,
+				65E30D8F2B3EA70B00D06A06 /* InitView.swift */,
 				65C00A6B2B3997CC002AB87E /* DetailView.swift */,
 				65C00A402B387C2C002AB87E /* Assets.xcassets */,
 				65C00A422B387C2D002AB87E /* Physical_Presence_Calculator.entitlements */,
@@ -286,6 +289,7 @@
 				65C00A682B387DDF002AB87E /* TravelData.swift in Sources */,
 				65C00A762B3C3F7E002AB87E /* TravelRow.swift in Sources */,
 				65C00A722B3C240D002AB87E /* EditView.swift in Sources */,
+				65E30D902B3EA70B00D06A06 /* InitView.swift in Sources */,
 				65C00A742B3C3B07002AB87E /* Travel.swift in Sources */,
 				65C00A6E2B3C12E9002AB87E /* MainView.swift in Sources */,
 				65C00A3D2B387C2B002AB87E /* Physical_Presence_CalculatorApp.swift in Sources */,

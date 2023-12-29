@@ -12,6 +12,7 @@ struct TravelList: View {
     
     @State private var isAdding = false
     @State private var newTravel = Travel()
+    @State private var isNew = false
     
     var body: some View {
         NavigationStack {
@@ -19,8 +20,9 @@ struct TravelList: View {
                 TravelRow(travel: travel)
                     .swipeActions(edge: .leading) {
                         Button {
-                            isAdding = true
                             newTravel = travel
+                            isNew = false
+                            isAdding = true
                         } label: {
                             Label("Edit", systemImage: "slider.horizonal.3")
                         }
@@ -38,8 +40,9 @@ struct TravelList: View {
             .toolbar {
                 ToolbarItem {
                     Button {
-                        isAdding = true
                         newTravel = Travel()
+                        isNew = true
+                        isAdding = true
                     } label: {
                         Image(systemName: "plus")
                     }
@@ -47,22 +50,26 @@ struct TravelList: View {
             }
             .sheet(isPresented: $isAdding) {
                 NavigationStack {
-                    EditView(travel: newTravel)
-                }
-                .toolbar {
-                    ToolbarItem(placement: .cancellationAction) {
-                        Button {
-                            isAdding = false
-                        } label: {
-                            Text("Cancel")
+                    EditView(travel: $newTravel)
+                    
+                    .toolbar {
+                        ToolbarItem(placement: .cancellationAction) {
+                            Button {
+                                isAdding = false
+                            } label: {
+                                Text("Cancel")
+                            }
                         }
-                    }
-                    ToolbarItem {
-                        Button {
-                            travelData.add(travel: newTravel)
-                            isAdding = false
-                        } label: {
-                            Text("Add")
+                        ToolbarItem {
+                            Button {
+                                if isNew == false {
+                                    travelData.remove(travel: newTravel)
+                                }
+                                travelData.add(travel: newTravel)
+                                isAdding = false
+                            } label: {
+                                Text("Save")
+                            }
                         }
                     }
                 }

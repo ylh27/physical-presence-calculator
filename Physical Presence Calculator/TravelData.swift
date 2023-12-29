@@ -28,6 +28,33 @@ class TravelData: ObservableObject {
     func remove(travel: Travel) {
         travels.removeAll { $0.id == travel.id }
     }
+    
+    private static func getEventsFileURL() throws -> URL {
+            FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+                .appendingPathComponent("travels.data")
+    }
+    
+    func load() {
+        do {
+            let fileURL = try TravelData.getEventsFileURL()
+            let data = try Data(contentsOf: fileURL)
+            travels = try JSONDecoder().decode([Travel].self, from: data)
+            print("Events loaded: \(travels.count)")
+        } catch {
+            print("Failed to load from file. Backup data used")
+        }
+    }
+    
+    func save() {
+        do {
+            let fileURL = try TravelData.getEventsFileURL()
+            let data = try JSONEncoder().encode(travels)
+            try data.write(to: fileURL, options: [.atomic, .completeFileProtection])
+            print("Travel list saved")
+        } catch {
+            print("Unable to save")
+        }
+    }
 }
 
 func TravelDate(date: String) -> Date? {

@@ -14,6 +14,12 @@ struct Physical_Presence_CalculatorApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView(travelData: travelData)
+                .task {
+                    travelData.load()
+                }
+                .onChange(of: travelData.travels) { _ in
+                    travelData.save()
+                }
         }
     }
 }

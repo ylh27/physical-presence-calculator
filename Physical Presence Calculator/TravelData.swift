@@ -29,14 +29,19 @@ class TravelData: ObservableObject {
         travels.removeAll { $0.id == travel.id }
     }
     
-    private static func getEventsFileURL() throws -> URL {
+    private static func getTravelsFileURL() throws -> URL {
             FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
                 .appendingPathComponent("travels.data")
     }
     
+    private static func getDateFileURL() throws -> URL {
+            FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+                .appendingPathComponent("initDate.data")
+    }
+    
     func load() {
         do {
-            let fileURL = try TravelData.getEventsFileURL()
+            let fileURL = try TravelData.getTravelsFileURL()
             let data = try Data(contentsOf: fileURL)
             travels = try JSONDecoder().decode([Travel].self, from: data)
             print("Events loaded: \(travels.count)")
@@ -47,10 +52,32 @@ class TravelData: ObservableObject {
     
     func save() {
         do {
-            let fileURL = try TravelData.getEventsFileURL()
+            let fileURL = try TravelData.getTravelsFileURL()
             let data = try JSONEncoder().encode(travels)
             try data.write(to: fileURL, options: [.atomic, .completeFileProtection])
             print("Travel list saved")
+        } catch {
+            print("Unable to save")
+        }
+    }
+    
+    func loadDate() {
+        do {
+            let fileURL = try TravelData.getDateFileURL()
+            let data = try Data(contentsOf: fileURL)
+            initDate = try JSONDecoder().decode(Date.self, from: data)
+            print("Date loaded")
+        } catch {
+            print("Failed to load from file. Backup data used")
+        }
+    }
+    
+    func saveDate() {
+        do {
+            let fileURL = try TravelData.getDateFileURL()
+            let data = try JSONEncoder().encode(initDate)
+            try data.write(to: fileURL, options: [.atomic, .completeFileProtection])
+            print("Date saved")
         } catch {
             print("Unable to save")
         }

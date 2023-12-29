@@ -40,7 +40,10 @@ struct TravelList: View {
             .toolbar {
                 ToolbarItem {
                     Button {
-                        newTravel = Travel()
+                        newTravel = Travel(entry: true,
+                                           port: "",
+                                           transport: "",
+                                           date: TravelDate(date: "2020-01-01")!)
                         isNew = true
                         isAdding = true
                     } label: {

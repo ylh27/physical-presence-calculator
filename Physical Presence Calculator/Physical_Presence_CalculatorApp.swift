@@ -16,9 +16,13 @@ struct Physical_Presence_CalculatorApp: App {
             ContentView(travelData: travelData)
                 .task {
                     travelData.load()
+                    travelData.loadDate()
                 }
                 .onChange(of: travelData.travels) { _ in
                     travelData.save()
+                }
+                .onChange(of: travelData.initDate) { _ in
+                    travelData.saveDate()
                 }
         }
     }

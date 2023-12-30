@@ -9,9 +9,9 @@ import SwiftUI
 
 struct Travel: Identifiable, Hashable, Codable {
     var id = UUID()
-    var entry: Bool = false
-    var port: String = "Montréal"
-    var transport: String = "airplane"
+    var entry = false
+    var port = "Montréal"
+    var transport = "airplane"
     var date = TravelDate(date: "2020-01-01")!
     
     var symbol: String {

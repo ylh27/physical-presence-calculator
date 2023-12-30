@@ -42,7 +42,7 @@ struct TravelList: View {
                     Button {
                         newTravel = Travel(entry: true,
                                            port: "",
-                                           transport: "",
+                                           transport: "airplane",
                                            date: TravelDate(date: "2020-01-01")!)
                         isNew = true
                         isAdding = true

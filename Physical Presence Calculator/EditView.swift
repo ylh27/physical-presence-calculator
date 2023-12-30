@@ -10,34 +10,27 @@ import SwiftUI
 struct EditView: View {
     @Binding var travel: Travel
     
-    enum Transport: String, CaseIterable, Identifiable {
-        case airplane, tram, ferry, bus
-        var id: Self { self }
-    }
-    @State private var transport: Transport = .airplane
-    
     var body: some View {
-        NavigationStack {
-            List {
-                TextField("Port", text: $travel.port)
-                Picker("Entry/Exit", selection: $travel.entry) {
-                    Text("Arrival").id(true)
-                    Text("Departure").id(false)
-                }
-                Text(String(travel.entry))
-                Picker("Transportation", selection: $travel.transport) {
-                    Text("Airplane").id("airplane")
-                    Text("Train").id("tram")
-                }
-                Text(travel.transport)
-                DatePicker(
-                    "Date",
-                    selection: $travel.date,
-                    displayedComponents: [.date]
-                )
+        List {
+            TextField("Port", text: $travel.port)
+            Picker("Entry/Exit", selection: $travel.entry) {
+                Text("Arrival").tag(true)
+                Text("Departure").tag(false)
             }
-            
-            .navigationTitle(travel.title)
+            //Text(String(travel.entry))
+            Picker("Transportation", selection: $travel.transport) {
+                Text("Airplane").tag("airplane")
+                Text("Train").tag("tram")
+                Text("Boat").tag("ferry")
+                Text("Bus").tag("bus")
+                Text("Car").tag("car")
+            }
+            //Text(travel.transport)
+            DatePicker(
+                "Date",
+                selection: $travel.date,
+                displayedComponents: [.date]
+            )
         }
     }
 }

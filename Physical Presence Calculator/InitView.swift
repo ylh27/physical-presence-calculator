@@ -11,16 +11,12 @@ struct InitView: View {
     @ObservedObject var travelData: TravelData
     
     var body: some View {
-        NavigationStack {
-            List {
-                DatePicker(
-                    "PR Since",
-                    selection: $travelData.initDate,
-                    displayedComponents: [.date]
-                )
-            }
-            
-            .navigationTitle("Edit Details")
+        List {
+            DatePicker(
+                "PR Since",
+                selection: $travelData.initDate,
+                displayedComponents: [.date]
+            )
         }
     }
 }

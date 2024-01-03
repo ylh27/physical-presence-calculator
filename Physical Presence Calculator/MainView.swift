@@ -15,15 +15,32 @@ struct MainView: View {
     var body: some View {
         NavigationStack {
             List {
-                Text("PR Since " + travelData.initDate.formatted(date: .abbreviated, time: .omitted))
+                Section(content: {
+                    Text("PR Since " + DateToString(date: travelData.initDate, style: .long))
+                    Text(String(travelData.daysSincePR()!) + " Days as PR")
+                }, header: {
+                    Text("Statistics")
+                })
                 
-                Button {
-                    isEditing = true
-                } label: {
-                    Text("Edit Details")
-                }
+                Section(content: {
+                    Button {
+                        isEditing = true
+                    } label: {
+                        Text("Edit Details")
+                    }
+                }, header: {
+                    Text("Edit")
+                })
+                
+
+                Section(content: {
+                    Link("About This App", destination: URL(string: "https://github.com/ylh27/physical-presence-calculator")!)
+                    Link("Release Notes", destination: URL(string: "https://github.com/ylh27/physical-presence-calculator/releases")!)
+                }, header: {
+                    Text("About")
+                })
             }
-            .navigationTitle("Statistics")
+            .navigationTitle("Home")
         }
         .sheet(isPresented: $isEditing) {
             NavigationStack {

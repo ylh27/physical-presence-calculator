@@ -12,7 +12,11 @@ struct EditView: View {
     
     var body: some View {
         List {
-            TextField("Port", text: $travel.port)
+            HStack {
+                Text("Port")
+                Spacer()
+                TextField("Port", text: $travel.port).multilineTextAlignment(.trailing)
+            }
             Picker("Entry/Exit", selection: $travel.entry) {
                 Text("Arrival").tag(true)
                 Text("Departure").tag(false)
@@ -31,6 +35,8 @@ struct EditView: View {
                 selection: $travel.date,
                 displayedComponents: [.date]
             )
+            .environment(\.timeZone, TimeZone(identifier: "Canada/Central")!)
+            //Text(DateToString(date: travel.date))
         }
     }
 }

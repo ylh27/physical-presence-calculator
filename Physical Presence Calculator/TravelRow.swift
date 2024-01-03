@@ -19,7 +19,7 @@ struct TravelRow: View {
                 Text(travel.port)
                     .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
                 
-                Text(travel.date.formatted(date: .complete, time: .omitted))
+                Text(DateToString(date: travel.date, style: .complete))
                     .font(.caption2)
                     .foregroundStyle(.secondary)
             }

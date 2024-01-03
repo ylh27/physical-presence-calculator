@@ -82,11 +82,24 @@ class TravelData: ObservableObject {
             print("Unable to save")
         }
     }
+    
+    func daysSincePR() -> Int? {
+        let diff = Calendar.current.dateComponents([.day], from: initDate, to: Date.now)
+        return diff.day
+    }
 }
 
 func TravelDate(date: String) -> Date? {
     let df = DateFormatter()
     df.locale = Locale(identifier: "en_US_POSIX")
+    df.timeZone = TimeZone(identifier: "Canada/Central")
     df.dateFormat = "yyyy-MM-dd"
     return df.date(from: date)
+}
+
+// convert date to string in CST with time omitted
+func DateToString(date: Date, style: Date.FormatStyle.DateStyle) -> String {
+    var f = Date.FormatStyle(date: style, time: .omitted)
+    f.timeZone = TimeZone(identifier: "Canada/Central")!
+    return date.formatted(f)
 }

@@ -14,7 +14,7 @@ struct ContentView: View {
         TabView {
             MainView(travelData: travelData)
                 .tabItem {
-                    Label("Statistics", systemImage: "timer")
+                    Label("Home", systemImage: "house")
                 }
             
             TravelList(travelData: travelData)

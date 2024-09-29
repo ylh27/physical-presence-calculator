@@ -13,7 +13,9 @@ struct TravelRow: View {
     var body: some View {
         HStack {
             Image(systemName: travel.symbol)
+                .frame(width: 20)
             Image(systemName: travel.transport)
+                .frame(width: 30)
                 .padding(15)
             VStack(alignment: .leading) {
                 Text(travel.port)

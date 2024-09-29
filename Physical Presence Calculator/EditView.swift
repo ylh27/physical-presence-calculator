@@ -28,6 +28,7 @@ struct EditView: View {
                 Text("Boat").tag("ferry")
                 Text("Bus").tag("bus")
                 Text("Car").tag("car")
+                Text("On Foot").tag("figure.wave")
             }
             //Text(travel.transport)
             DatePicker(

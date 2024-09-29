@@ -5,7 +5,7 @@
 //  Created by Lehan Yang on 12/27/23.
 //
 
-import SwiftUI
+import Foundation
 
 struct Travel: Identifiable, Hashable, Codable {
     var id = UUID()

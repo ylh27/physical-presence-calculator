@@ -22,6 +22,15 @@ struct MainView: View {
                     Text("Statistics")
                 })
                 
+                
+                Section(content: {
+                    // TODO: add exemption data
+                    Text(String(daysInCanada(travelData: travelData, exemptionData: ExemptionData(), referenceDate: Date.now)) + " days in Canada (Current Cycle)")
+                    Text("Return Before " + DateToString(date: dateToReturn(travelData: travelData, exemptionData: ExemptionData()), style: .long))
+                }, header:{
+                    Text("Compliance")
+                })
+                
                 Section(content: {
                     Button {
                         isEditing = true

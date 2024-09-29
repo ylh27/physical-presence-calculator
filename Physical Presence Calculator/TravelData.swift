@@ -5,10 +5,17 @@
 //  Created by Lehan Yang on 12/24/23.
 //
 
-import SwiftUI
+import Foundation
+
+func removeTimeStamp(fromDate: Date) -> Date {
+    guard let date = Calendar.current.date(from: Calendar.current.dateComponents([.year, .month, .day], from: fromDate)) else {
+        fatalError("Failed to strip time from Date object")
+    }
+    return date
+}
 
 class TravelData: ObservableObject {
-    @Published var initDate: Date = TravelDate(date: "2020-01-01")!
+    @Published var initDate: Date = removeTimeStamp(fromDate: TravelDate(date: "2020-01-01")!)
     @Published var travels: [Travel] = [
         Travel(entry: true,
                port: "Greenside",
@@ -22,7 +29,7 @@ class TravelData: ObservableObject {
     
     func add(travel: Travel) {
         travels.append(travel)
-        travels.sort() { $0.date < $1.date }
+        travels.sort() { $0.date > $1.date }    // decreasing order
     }
     
     func remove(travel: Travel) {
@@ -94,7 +101,7 @@ func TravelDate(date: String) -> Date? {
     df.locale = Locale(identifier: "en_US_POSIX")
     df.timeZone = TimeZone(identifier: "Canada/Central")
     df.dateFormat = "yyyy-MM-dd"
-    return df.date(from: date)
+    return removeTimeStamp(fromDate: df.date(from: date)!)
 }
 
 // convert date to string in CST with time omitted

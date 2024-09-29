@@ -39,13 +39,18 @@ struct TravelList: View {
             .navigationTitle("Travel List")
             .toolbar {
                 ToolbarItem {
-                    Button {
-                        newTravel = Travel(entry: true,
-                                           port: "",
-                                           transport: "airplane",
-                                           date: TravelDate(date: "2020-01-01")!)
-                        isNew = true
-                        isAdding = true
+                    Menu{
+                        Button("New Travel Record") {
+                            newTravel = Travel(entry: true,
+                                               port: "",
+                                               transport: "airplane",
+                                               date: TravelDate(date: "2020-01-01")!)
+                            isNew = true
+                            isAdding = true
+                        }
+                        Button("New Exemption") {
+                            
+                        }
                     } label: {
                         Image(systemName: "plus")
                     }

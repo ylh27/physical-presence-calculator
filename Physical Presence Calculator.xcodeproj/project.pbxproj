@@ -21,6 +21,8 @@
 		65C00A722B3C240D002AB87E /* EditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C00A712B3C240D002AB87E /* EditView.swift */; };
 		65C00A742B3C3B07002AB87E /* Travel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C00A732B3C3B07002AB87E /* Travel.swift */; };
 		65C00A762B3C3F7E002AB87E /* TravelRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C00A752B3C3F7E002AB87E /* TravelRow.swift */; };
+		65CDC4522CA3ADE6004337F8 /* Compliance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65CDC4512CA3ADE1004337F8 /* Compliance.swift */; };
+		65CDC4542CA3B241004337F8 /* Exemption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65CDC4532CA3B241004337F8 /* Exemption.swift */; };
 		65E30D902B3EA70B00D06A06 /* InitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65E30D8F2B3EA70B00D06A06 /* InitView.swift */; };
 /* End PBXBuildFile section */
 
@@ -60,6 +62,8 @@
 		65C00A712B3C240D002AB87E /* EditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditView.swift; sourceTree = "<group>"; };
 		65C00A732B3C3B07002AB87E /* Travel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Travel.swift; sourceTree = "<group>"; };
 		65C00A752B3C3F7E002AB87E /* TravelRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelRow.swift; sourceTree = "<group>"; };
+		65CDC4512CA3ADE1004337F8 /* Compliance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Compliance.swift; sourceTree = "<group>"; };
+		65CDC4532CA3B241004337F8 /* Exemption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Exemption.swift; sourceTree = "<group>"; };
 		65E30D8F2B3EA70B00D06A06 /* InitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -114,8 +118,10 @@
 				65C00A3C2B387C2B002AB87E /* Physical_Presence_CalculatorApp.swift */,
 				65C00A6F2B3C130B002AB87E /* ContentView.swift */,
 				65C00A672B387DDF002AB87E /* TravelData.swift */,
+				65CDC4512CA3ADE1004337F8 /* Compliance.swift */,
 				65C00A732B3C3B07002AB87E /* Travel.swift */,
 				65C00A692B387E8B002AB87E /* TravelList.swift */,
+				65CDC4532CA3B241004337F8 /* Exemption.swift */,
 				65C00A752B3C3F7E002AB87E /* TravelRow.swift */,
 				65C00A712B3C240D002AB87E /* EditView.swift */,
 				65C00A6D2B3C12E9002AB87E /* MainView.swift */,
@@ -217,7 +223,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1510;
-				LastUpgradeCheck = 1510;
+				LastUpgradeCheck = 1600;
 				TargetAttributes = {
 					65C00A382B387C2B002AB87E = {
 						CreatedOnToolsVersion = 15.1;
@@ -283,6 +289,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				65CDC4522CA3ADE6004337F8 /* Compliance.swift in Sources */,
 				65C00A6A2B387E8B002AB87E /* TravelList.swift in Sources */,
 				65C00A6C2B3997CC002AB87E /* DetailView.swift in Sources */,
 				65C00A702B3C130B002AB87E /* ContentView.swift in Sources */,
@@ -293,6 +300,7 @@
 				65C00A742B3C3B07002AB87E /* Travel.swift in Sources */,
 				65C00A6E2B3C12E9002AB87E /* MainView.swift in Sources */,
 				65C00A3D2B387C2B002AB87E /* Physical_Presence_CalculatorApp.swift in Sources */,
+				65CDC4542CA3B241004337F8 /* Exemption.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -363,6 +371,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -424,6 +433,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -451,6 +461,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Physical Presence Calculator/Physical_Presence_Calculator.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"Physical Presence Calculator/Preview Content\"";
 				DEVELOPMENT_TEAM = 7QY5Z3L4LZ;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -471,7 +482,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 14.2;
-				MARKETING_VERSION = 0.1;
+				MARKETING_VERSION = 0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = "ylh.Physical-Presence-Calculator";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
@@ -491,6 +502,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Physical Presence Calculator/Physical_Presence_Calculator.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"Physical Presence Calculator/Preview Content\"";
 				DEVELOPMENT_TEAM = 7QY5Z3L4LZ;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -511,7 +523,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 14.2;
-				MARKETING_VERSION = 0.1;
+				MARKETING_VERSION = 0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = "ylh.Physical-Presence-Calculator";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
@@ -526,10 +538,10 @@
 		65C00A622B387C2D002AB87E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = 7QY5Z3L4LZ;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
@@ -549,10 +561,10 @@
 		65C00A632B387C2D002AB87E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = 7QY5Z3L4LZ;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
@@ -572,9 +584,9 @@
 		65C00A652B387C2D002AB87E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = 7QY5Z3L4LZ;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
@@ -594,9 +606,9 @@
 		65C00A662B387C2D002AB87E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = 7QY5Z3L4LZ;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.2;

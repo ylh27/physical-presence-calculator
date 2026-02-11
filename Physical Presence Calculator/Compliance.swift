@@ -11,7 +11,7 @@ import Foundation
 
 // calculate date
 // date must be in CST without time stamp
-func daysInCanada(travelData: TravelData, exemptionData: ExemptionData, referenceDate: Date) -> Int {
+func daysInCanada(travelData: TravelData, referenceDate: Date) -> Int {
     
     var entry, exit: Date
     var tot = 0
@@ -54,20 +54,20 @@ func daysInCanada(travelData: TravelData, exemptionData: ExemptionData, referenc
     return Calendar.current.dateComponents([.day], from: startDate!, to: referenceDate).day! - tot;
 }
 
-func dateToReturn(travelData: TravelData, exemptionData: ExemptionData) -> Date {
+func dateToReturn(travelData: TravelData) -> Date {
     
     var date = removeTimeStamp(fromDate: Date.now)
     let fiveYearCutoff = Calendar.current.date(byAdding: .year, value: 5, to: travelData.initDate)!
 
     if (date > fiveYearCutoff) {
-        while daysInCanada(travelData: travelData, exemptionData: exemptionData, referenceDate: date) >= 730 {
+        while daysInCanada(travelData: travelData, referenceDate: date) >= 730 {
             date = Calendar.current.date(byAdding: .day, value: 1, to: date)!
             if date > Calendar.current.date(byAdding: .year, value: 5, to: travelData.travels[0].date)! {
                 break
             }
         }
     } else {
-        let daysNeeded = daysInCanada(travelData: travelData, exemptionData: exemptionData, referenceDate: date) - 730
+        let daysNeeded = daysInCanada(travelData: travelData, referenceDate: date) - 730
         date = Calendar.current.date(byAdding: .day, value: daysNeeded, to: fiveYearCutoff)!
     }
     

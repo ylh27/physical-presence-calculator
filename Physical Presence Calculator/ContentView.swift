@@ -14,12 +14,17 @@ struct ContentView: View {
         TabView {
             MainView(travelData: travelData)
                 .tabItem {
-                    Label("Home", systemImage: "house")
+                    Label("Dashboard", systemImage: "house")
                 }
             
             TravelList(travelData: travelData)
                 .tabItem {
-                    Label("Travel List", systemImage: "list.bullet")
+                    Label("Travel Record", systemImage: "list.bullet")
+                }
+            
+            MenuView(travelData: travelData)
+                .tabItem {
+                    Label("Menu", systemImage: "ellipsis")
                 }
         }
     }

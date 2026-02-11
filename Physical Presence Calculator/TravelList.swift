@@ -36,7 +36,7 @@ struct TravelList: View {
                     }
             }
             
-            .navigationTitle("Travel List")
+            .navigationTitle("Travel Record")
             .toolbar {
                 ToolbarItem {
                     Menu{

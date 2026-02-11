@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		658526E32F3D25A400ABDF08 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 658526E22F3D25A400ABDF08 /* MenuView.swift */; };
 		65C00A3D2B387C2B002AB87E /* Physical_Presence_CalculatorApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C00A3C2B387C2B002AB87E /* Physical_Presence_CalculatorApp.swift */; };
 		65C00A412B387C2C002AB87E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 65C00A402B387C2C002AB87E /* Assets.xcassets */; };
 		65C00A452B387C2D002AB87E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 65C00A442B387C2D002AB87E /* Preview Assets.xcassets */; };
@@ -44,6 +45,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		658526E22F3D25A400ABDF08 /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
 		65C00A392B387C2B002AB87E /* Physical Presence Calculator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Physical Presence Calculator.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		65C00A3C2B387C2B002AB87E /* Physical_Presence_CalculatorApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Physical_Presence_CalculatorApp.swift; sourceTree = "<group>"; };
 		65C00A402B387C2C002AB87E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -125,6 +127,7 @@
 				65C00A752B3C3F7E002AB87E /* TravelRow.swift */,
 				65C00A712B3C240D002AB87E /* EditView.swift */,
 				65C00A6D2B3C12E9002AB87E /* MainView.swift */,
+				658526E22F3D25A400ABDF08 /* MenuView.swift */,
 				65E30D8F2B3EA70B00D06A06 /* InitView.swift */,
 				65C00A6B2B3997CC002AB87E /* DetailView.swift */,
 				65C00A402B387C2C002AB87E /* Assets.xcassets */,
@@ -296,6 +299,7 @@
 				65C00A682B387DDF002AB87E /* TravelData.swift in Sources */,
 				65C00A762B3C3F7E002AB87E /* TravelRow.swift in Sources */,
 				65C00A722B3C240D002AB87E /* EditView.swift in Sources */,
+				658526E32F3D25A400ABDF08 /* MenuView.swift in Sources */,
 				65E30D902B3EA70B00D06A06 /* InitView.swift in Sources */,
 				65C00A742B3C3B07002AB87E /* Travel.swift in Sources */,
 				65C00A6E2B3C12E9002AB87E /* MainView.swift in Sources */,
@@ -478,7 +482,7 @@
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 14.2;
@@ -519,7 +523,7 @@
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 14.2;

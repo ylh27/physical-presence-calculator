@@ -21,7 +21,6 @@ struct EditView: View {
                 Text("Arrival").tag(true)
                 Text("Departure").tag(false)
             }
-            //Text(String(travel.entry))
             Picker("Transportation", selection: $travel.transport) {
                 Text("Airplane").tag("airplane")
                 Text("Train").tag("tram")
@@ -30,14 +29,12 @@ struct EditView: View {
                 Text("Car").tag("car")
                 Text("On Foot").tag("figure.wave")
             }
-            //Text(travel.transport)
             DatePicker(
                 "Date",
                 selection: $travel.date,
                 displayedComponents: [.date]
             )
-            .environment(\.timeZone, TimeZone(identifier: "Canada/Central")!)
-            //Text(DateToString(date: travel.date))
+            .environment(\.timeZone, TimeZone(identifier: "Canada/Central") ?? TimeZone.current)
         }
     }
 }

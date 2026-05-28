@@ -17,7 +17,7 @@ struct InitView: View {
                 selection: $travelData.initDate,
                 displayedComponents: [.date]
             )
-            .environment(\.timeZone, TimeZone(identifier: "Canada/Central")!)
+            .environment(\.timeZone, TimeZone(identifier: "Canada/Central") ?? TimeZone.current)
         }
     }
 }

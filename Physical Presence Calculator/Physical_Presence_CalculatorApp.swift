@@ -9,20 +9,24 @@ import SwiftUI
 
 @main
 struct Physical_Presence_CalculatorApp: App {
-    @StateObject private var travelData = TravelData();
+    @StateObject private var travelData = TravelData()
     
     var body: some Scene {
         WindowGroup {
             ContentView(travelData: travelData)
                 .task {
-                    travelData.load()
-                    travelData.loadDate()
+                    await travelData.load()
+                    await travelData.loadDate()
                 }
-                .onChange(of: travelData.travels) { _ in
-                    travelData.save()
+                .onChange(of: travelData.travels) { _, _ in
+                    Task {
+                        await travelData.save()
+                    }
                 }
-                .onChange(of: travelData.initDate) { _ in
-                    travelData.saveDate()
+                .onChange(of: travelData.initDate) { _, _ in
+                    Task {
+                        await travelData.saveDate()
+                    }
                 }
         }
     }

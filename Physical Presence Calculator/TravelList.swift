@@ -39,12 +39,12 @@ struct TravelList: View {
             .navigationTitle("Travel Record")
             .toolbar {
                 ToolbarItem {
-                    Menu{
+                    Menu {
                         Button("New Travel Record") {
                             newTravel = Travel(entry: true,
                                                port: "",
                                                transport: "airplane",
-                                               date: TravelDate(date: "2020-01-01")!)
+                                               date: Date.from(yyyymmdd: "2020-01-01") ?? Date())
                             isNew = true
                             isAdding = true
                         }
@@ -70,7 +70,7 @@ struct TravelList: View {
                         }
                         ToolbarItem {
                             Button {
-                                if isNew == false {
+                                if !isNew {
                                     travelData.remove(travel: newTravel)
                                 }
                                 travelData.add(travel: newTravel)

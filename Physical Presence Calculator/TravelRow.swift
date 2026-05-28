@@ -19,9 +19,9 @@ struct TravelRow: View {
                 .padding(15)
             VStack(alignment: .leading) {
                 Text(travel.port)
-                    .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
+                    .fontWeight(.bold)
                 
-                Text(DateToString(date: travel.date, style: .complete))
+                Text(travel.date.toString(style: .complete))
                     .font(.caption2)
                     .foregroundStyle(.secondary)
             }

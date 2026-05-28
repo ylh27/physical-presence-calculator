@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import SwiftData
 
 enum TrackingGoal: String, CaseIterable, Identifiable {
     case pr = "PR Status"
@@ -21,15 +20,8 @@ enum TrackingGoal: String, CaseIterable, Identifiable {
 struct MainView: View {
     @ObservedObject var travelData: TravelData
     
-    @Environment(\.modelContext) private var modelContext
-    //@Query private var trips: [Trip]
-    
     // State to track which goal the user has selected
     @State private var selectedGoal: TrackingGoal = .citizenship
-    
-    // User data (Mocked)
-    let landingDate = Calendar.current.date(from: DateComponents(year: 2024, month: 1, day: 1))!
-    let arrivalInCanada = Calendar.current.date(from: DateComponents(year: 2022, month: 6, day: 1))!
 
     // Compute presence days using the current instance's travelData when needed
     var totalPresenceDays: Int {
@@ -97,6 +89,6 @@ struct MainView: View {
     }
 }
 
-//#Preview {
-//    MainView(travelData: TravelData())
-//}
+#Preview {
+    MainView(travelData: TravelData())
+}

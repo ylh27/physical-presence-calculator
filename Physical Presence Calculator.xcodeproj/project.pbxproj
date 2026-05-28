@@ -16,7 +16,7 @@
 		65C00A5B2B387C2D002AB87E /* Physical_Presence_CalculatorUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C00A5A2B387C2D002AB87E /* Physical_Presence_CalculatorUITestsLaunchTests.swift */; };
 		65C00A682B387DDF002AB87E /* TravelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C00A672B387DDF002AB87E /* TravelData.swift */; };
 		65C00A6A2B387E8B002AB87E /* TravelList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C00A692B387E8B002AB87E /* TravelList.swift */; };
-		65C00A6C2B3997CC002AB87E /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C00A6B2B3997CC002AB87E /* DetailView.swift */; };
+		65C00A6C2B3997CC002AB87E /* Date+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C00A6B2B3997CC002AB87E /* Date+Helpers.swift */; };
 		65C00A6E2B3C12E9002AB87E /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C00A6D2B3C12E9002AB87E /* MainView.swift */; };
 		65C00A702B3C130B002AB87E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C00A6F2B3C130B002AB87E /* ContentView.swift */; };
 		65C00A722B3C240D002AB87E /* EditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C00A712B3C240D002AB87E /* EditView.swift */; };
@@ -58,7 +58,7 @@
 		65C00A5A2B387C2D002AB87E /* Physical_Presence_CalculatorUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Physical_Presence_CalculatorUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		65C00A672B387DDF002AB87E /* TravelData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelData.swift; sourceTree = "<group>"; };
 		65C00A692B387E8B002AB87E /* TravelList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelList.swift; sourceTree = "<group>"; };
-		65C00A6B2B3997CC002AB87E /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
+		65C00A6B2B3997CC002AB87E /* Date+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Helpers.swift"; sourceTree = "<group>"; };
 		65C00A6D2B3C12E9002AB87E /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		65C00A6F2B3C130B002AB87E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		65C00A712B3C240D002AB87E /* EditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditView.swift; sourceTree = "<group>"; };
@@ -129,7 +129,7 @@
 				65C00A6D2B3C12E9002AB87E /* MainView.swift */,
 				658526E22F3D25A400ABDF08 /* MenuView.swift */,
 				65E30D8F2B3EA70B00D06A06 /* InitView.swift */,
-				65C00A6B2B3997CC002AB87E /* DetailView.swift */,
+				65C00A6B2B3997CC002AB87E /* Date+Helpers.swift */,
 				65C00A402B387C2C002AB87E /* Assets.xcassets */,
 				65C00A422B387C2D002AB87E /* Physical_Presence_Calculator.entitlements */,
 				65C00A432B387C2D002AB87E /* Preview Content */,
@@ -294,7 +294,7 @@
 			files = (
 				65CDC4522CA3ADE6004337F8 /* Compliance.swift in Sources */,
 				65C00A6A2B387E8B002AB87E /* TravelList.swift in Sources */,
-				65C00A6C2B3997CC002AB87E /* DetailView.swift in Sources */,
+				65C00A6C2B3997CC002AB87E /* Date+Helpers.swift in Sources */,
 				65C00A702B3C130B002AB87E /* ContentView.swift in Sources */,
 				65C00A682B387DDF002AB87E /* TravelData.swift in Sources */,
 				65C00A762B3C3F7E002AB87E /* TravelRow.swift in Sources */,

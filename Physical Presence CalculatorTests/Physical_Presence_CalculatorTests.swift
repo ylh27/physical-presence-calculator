@@ -6,30 +6,118 @@
 //
 
 import XCTest
+@testable import Physical_Presence_Calculator
 
 final class Physical_Presence_CalculatorTests: XCTestCase {
-
+    
+    var travelData: TravelData!
+    
     override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        try super.setUpWithError()
+        travelData = TravelData()
+        travelData.travels = []
     }
-
+    
     override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+        travelData = nil
+        try super.tearDownWithError()
     }
-
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        // Any test you write for XCTest can be annotated as throws and async.
-        // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
-        // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
+    
+    func testDateParsingAndFormatting() {
+        let validDate = Date.from(yyyymmdd: "2024-05-28")
+        XCTAssertNotNil(validDate)
+        
+        let invalidDate = Date.from(yyyymmdd: "not-a-date")
+        XCTAssertNil(invalidDate)
+        
+        let formattedString = validDate?.toString(style: .numeric)
+        XCTAssertNotNil(formattedString)
     }
-
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        measure {
-            // Put the code you want to measure the time of here.
+    
+    func testDaysInCanadaWithNoTravels() {
+        let calendar = Calendar.current
+        guard let prSince = calendar.date(byAdding: .day, value: -30, to: Date.now.strippedTime) else {
+            XCTFail("Failed to generate test date")
+            return
         }
+        travelData.initDate = prSince
+        
+        let days = daysInCanada(travelData: travelData, referenceDate: Date.now)
+        XCTAssertEqual(days, 30)
     }
-
+    
+    func testDaysInCanadaWithSingleDepartureAndArrival() {
+        let calendar = Calendar.current
+        guard let prSince = calendar.date(byAdding: .day, value: -60, to: Date.now.strippedTime),
+              let departureDate = calendar.date(byAdding: .day, value: -40, to: Date.now.strippedTime),
+              let arrivalDate = calendar.date(byAdding: .day, value: -20, to: Date.now.strippedTime) else {
+            XCTFail("Failed to generate test dates")
+            return
+        }
+        travelData.initDate = prSince
+        
+        travelData.travels = [
+            Travel(entry: true, port: "Montreal", transport: "airplane", date: arrivalDate),
+            Travel(entry: false, port: "Montreal", transport: "airplane", date: departureDate)
+        ]
+        
+        let days = daysInCanada(travelData: travelData, referenceDate: Date.now)
+        XCTAssertEqual(days, 40)
+    }
+    
+    func testDaysInCanadaSameDayTravel() {
+        let calendar = Calendar.current
+        guard let prSince = calendar.date(byAdding: .day, value: -30, to: Date.now.strippedTime),
+              let sameDay = calendar.date(byAdding: .day, value: -15, to: Date.now.strippedTime) else {
+            XCTFail("Failed to generate test dates")
+            return
+        }
+        travelData.initDate = prSince
+        
+        travelData.travels = [
+            Travel(entry: true, port: "Montreal", transport: "car", date: sameDay),
+            Travel(entry: false, port: "Montreal", transport: "car", date: sameDay)
+        ]
+        
+        let days = daysInCanada(travelData: travelData, referenceDate: Date.now)
+        XCTAssertEqual(days, 30)
+    }
+    
+    func testDaysInCanadaOutSideRollingWindow() {
+        let calendar = Calendar.current
+        guard let prSince = calendar.date(byAdding: .year, value: -6, to: Date.now.strippedTime),
+              let oldDeparture = calendar.date(byAdding: .month, value: -66, to: Date.now.strippedTime),
+              let oldArrival = calendar.date(byAdding: .month, value: -62, to: Date.now.strippedTime) else {
+            XCTFail("Failed to generate test dates")
+            return
+        }
+        travelData.initDate = prSince
+        
+        travelData.travels = [
+            Travel(entry: true, port: "Montreal", transport: "airplane", date: oldArrival),
+            Travel(entry: false, port: "Montreal", transport: "airplane", date: oldDeparture)
+        ]
+        
+        guard let fiveYearsAgo = calendar.date(byAdding: .year, value: -5, to: Date.now.strippedTime),
+              let expectedTotalDays = calendar.dateComponents([.day], from: fiveYearsAgo, to: Date.now.strippedTime).day else {
+            XCTFail("Failed to compute expected days")
+            return
+        }
+        
+        let days = daysInCanada(travelData: travelData, referenceDate: Date.now)
+        XCTAssertEqual(days, expectedTotalDays)
+    }
+    
+    func testDateToReturnGracefulHandlingOfEmptyTravels() {
+        let calendar = Calendar.current
+        guard let prSince = calendar.date(byAdding: .year, value: -6, to: Date.now.strippedTime) else {
+            XCTFail("Failed to generate test date")
+            return
+        }
+        travelData.initDate = prSince
+        travelData.travels = []
+        
+        let targetDate = dateToReturn(travelData: travelData)
+        XCTAssertGreaterThanOrEqual(targetDate, Date.now.strippedTime)
+    }
 }

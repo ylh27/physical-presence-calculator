@@ -7,13 +7,9 @@
 
 import Foundation
 
-class ExemptionData: ObservableObject {
-    
-}
-
 struct Exemption: Identifiable, Hashable, Codable {
     var id = UUID()
-    var startDate = TravelDate(date: "2020-01-01")
-    var endDate = TravelDate(date: "2020-12-01")
+    var startDate = Date.from(yyyymmdd: "2020-01-01") ?? Date()
+    var endDate = Date.from(yyyymmdd: "2020-12-01") ?? Date()
     var reason = ""
 }

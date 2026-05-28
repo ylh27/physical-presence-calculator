@@ -16,8 +16,8 @@ struct MenuView: View {
         NavigationStack {
             List {
                 Section(content: {
-                    Text("PR Since " + DateToString(date: travelData.initDate, style: .long))
-                    Text(String(travelData.daysSincePR()!) + " Days as PR")
+                    Text("PR Since " + travelData.initDate.toString(style: .long))
+                    Text("\(travelData.daysSincePR() ?? 0) Days as PR")
                     Button {
                         isEditing = true
                     } label: {
@@ -54,6 +54,6 @@ struct MenuView: View {
     }
 }
 
-//#Preview {
-//    MenuView()
-//}
+#Preview {
+    MenuView(travelData: TravelData())
+}

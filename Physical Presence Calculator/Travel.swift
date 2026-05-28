@@ -12,10 +12,10 @@ struct Travel: Identifiable, Hashable, Codable {
     var entry = false
     var port = "Montréal"
     var transport = "airplane"
-    var date = TravelDate(date: "2020-01-01")!
+    var date = Date.from(yyyymmdd: "2020-01-01") ?? Date()
     
     var symbol: String {
-        if entry == true {
+        if entry {
             return "figure.walk.departure"
         } else {
             return "figure.walk.arrival"
@@ -23,7 +23,7 @@ struct Travel: Identifiable, Hashable, Codable {
     }
     
     var title: String {
-        if entry == false {
+        if !entry {
             return "Departure at " + port
         } else {
             return "Entry at " + port

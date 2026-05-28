@@ -6,87 +6,109 @@
 //
 
 import Foundation
-
-func removeTimeStamp(fromDate: Date) -> Date {
-    guard let date = Calendar.current.date(from: Calendar.current.dateComponents([.year, .month, .day], from: fromDate)) else {
-        fatalError("Failed to strip time from Date object")
-    }
-    return date
-}
+import OSLog
 
 class TravelData: ObservableObject {
-    @Published var initDate: Date = removeTimeStamp(fromDate: TravelDate(date: "2020-01-01")!)
+    private static let logger = Logger(subsystem: Bundle.main.bundleIdentifier ?? "com.physicalpresence.calculator", category: "TravelData")
+    
+    @Published var initDate: Date = Date.from(yyyymmdd: "2020-01-01")?.strippedTime ?? Date()
     @Published var travels: [Travel] = [
         Travel(entry: true,
                port: "Greenside",
                transport: "ferry",
-               date: TravelDate(date: "2020-06-01")!),
+               date: Date.from(yyyymmdd: "2020-06-01") ?? Date()),
         Travel(entry: false,
                port: "Hapwich",
                transport: "car",
-               date: TravelDate(date: "2020-01-01")!),
+               date: Date.from(yyyymmdd: "2020-01-01") ?? Date()),
     ]
     
+    @MainActor
     func add(travel: Travel) {
         travels.append(travel)
-        travels.sort() { $0.date > $1.date }    // decreasing order
+        travels.sort { $0.date > $1.date } // decreasing order
     }
     
+    @MainActor
     func remove(travel: Travel) {
         travels.removeAll { $0.id == travel.id }
     }
     
     private static func getTravelsFileURL() throws -> URL {
-            FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
-                .appendingPathComponent("travels.data")
+        FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+            .appendingPathComponent("travels.json")
     }
     
     private static func getDateFileURL() throws -> URL {
-            FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
-                .appendingPathComponent("initDate.data")
+        FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+            .appendingPathComponent("initDate.json")
     }
     
-    func load() {
+    @MainActor
+    func load() async {
         do {
             let fileURL = try TravelData.getTravelsFileURL()
-            let data = try Data(contentsOf: fileURL)
-            travels = try JSONDecoder().decode([Travel].self, from: data)
-            print("Events loaded: \(travels.count)")
+            let loadedTravels = try await Task.detached(priority: .background) { () -> [Travel] in
+                guard FileManager.default.fileExists(atPath: fileURL.path) else {
+                    throw CocoaError(.fileReadNoSuchFile)
+                }
+                let data = try Data(contentsOf: fileURL)
+                return try JSONDecoder().decode([Travel].self, from: data)
+            }.value
+            
+            self.travels = loadedTravels
+            Self.logger.info("Events loaded: \(loadedTravels.count)")
         } catch {
-            print("Failed to load from file. Backup data used")
+            Self.logger.warning("Failed to load travels from file: \(error.localizedDescription, privacy: .public). Backup data used.")
         }
     }
     
-    func save() {
+    @MainActor
+    func save() async {
+        let travelsToSave = self.travels
         do {
             let fileURL = try TravelData.getTravelsFileURL()
-            let data = try JSONEncoder().encode(travels)
-            try data.write(to: fileURL, options: [.atomic, .completeFileProtection])
-            print("Travel list saved")
+            try await Task.detached(priority: .background) {
+                let data = try JSONEncoder().encode(travelsToSave)
+                try data.write(to: fileURL, options: [.atomic, .completeFileProtection])
+            }.value
+            Self.logger.info("Travel list saved successfully")
         } catch {
-            print("Unable to save")
+            Self.logger.error("Unable to save travels: \(error.localizedDescription, privacy: .public)")
         }
     }
     
-    func loadDate() {
+    @MainActor
+    func loadDate() async {
         do {
             let fileURL = try TravelData.getDateFileURL()
-            let data = try Data(contentsOf: fileURL)
-            initDate = try JSONDecoder().decode(Date.self, from: data)
-            print("Date loaded")
+            let loadedDate = try await Task.detached(priority: .background) { () -> Date in
+                guard FileManager.default.fileExists(atPath: fileURL.path) else {
+                    throw CocoaError(.fileReadNoSuchFile)
+                }
+                let data = try Data(contentsOf: fileURL)
+                return try JSONDecoder().decode(Date.self, from: data)
+            }.value
+            
+            self.initDate = loadedDate
+            Self.logger.info("Date loaded")
         } catch {
-            print("Failed to load from file. Backup data used")
+            Self.logger.warning("Failed to load date from file: \(error.localizedDescription, privacy: .public). Backup data used.")
         }
     }
     
-    func saveDate() {
+    @MainActor
+    func saveDate() async {
+        let dateToSave = self.initDate
         do {
             let fileURL = try TravelData.getDateFileURL()
-            let data = try JSONEncoder().encode(initDate)
-            try data.write(to: fileURL, options: [.atomic, .completeFileProtection])
-            print("Date saved")
+            try await Task.detached(priority: .background) {
+                let data = try JSONEncoder().encode(dateToSave)
+                try data.write(to: fileURL, options: [.atomic, .completeFileProtection])
+            }.value
+            Self.logger.info("Date saved successfully")
         } catch {
-            print("Unable to save")
+            Self.logger.error("Unable to save date: \(error.localizedDescription, privacy: .public)")
         }
     }
     
@@ -94,19 +116,4 @@ class TravelData: ObservableObject {
         let diff = Calendar.current.dateComponents([.day], from: initDate, to: Date.now)
         return diff.day
     }
-}
-
-func TravelDate(date: String) -> Date? {
-    let df = DateFormatter()
-    df.locale = Locale(identifier: "en_US_POSIX")
-    df.timeZone = TimeZone(identifier: "Canada/Central")
-    df.dateFormat = "yyyy-MM-dd"
-    return removeTimeStamp(fromDate: df.date(from: date)!)
-}
-
-// convert date to string in CST with time omitted
-func DateToString(date: Date, style: Date.FormatStyle.DateStyle) -> String {
-    var f = Date.FormatStyle(date: style, time: .omitted)
-    f.timeZone = TimeZone(identifier: "Canada/Central")!
-    return date.formatted(f)
 }

@@ -14,6 +14,8 @@ class TravelData: ObservableObject {
     @Published var initDate: Date = Date().strippedTime
     @Published var travels: [Travel] = []
     @Published var exemptions: [Exemption] = []
+    @Published var wasTemporaryResident: Bool = false
+    @Published var tempResidentDate: Date = Date().strippedTime
     
     @MainActor
     func add(travel: Travel) {
@@ -89,7 +91,7 @@ class TravelData: ObservableObject {
         let iCloudDocsURL = ubiquityURL.appendingPathComponent("Documents")
         let localDocsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
         
-        let fileNames = ["travels.json", "exemptions.json", "initDate.json"]
+        let fileNames = ["travels.json", "exemptions.json", "initDate.json", "tempResident.json"]
         
         if !FileManager.default.fileExists(atPath: iCloudDocsURL.path) {
             do {
@@ -127,6 +129,10 @@ class TravelData: ObservableObject {
     
     private static func getExemptionsFileURL() throws -> URL {
         getDirectoryURL().appendingPathComponent("exemptions.json")
+    }
+    
+    private static func getTempResidentFileURL() throws -> URL {
+        getDirectoryURL().appendingPathComponent("tempResident.json")
     }
     
     @MainActor
@@ -236,4 +242,45 @@ class TravelData: ObservableObject {
         let diff = Calendar.current.dateComponents([.day], from: initDate, to: Date.now)
         return diff.day
     }
+    
+    @MainActor
+    func loadTempResident() async {
+        do {
+            let fileURL = try TravelData.getTempResidentFileURL()
+            await TravelData.downloadUbiquitousFileIfNeeded(at: fileURL)
+            let loadedData = try await Task.detached(priority: .background) { () -> TempResidentData in
+                guard FileManager.default.fileExists(atPath: fileURL.path) else {
+                    throw CocoaError(.fileReadNoSuchFile)
+                }
+                let data = try Data(contentsOf: fileURL)
+                return try JSONDecoder().decode(TempResidentData.self, from: data)
+            }.value
+            
+            self.wasTemporaryResident = loadedData.wasTemporaryResident
+            self.tempResidentDate = loadedData.tempResidentDate
+            Self.logger.info("Temp resident loaded")
+        } catch {
+            Self.logger.warning("Failed to load temp resident from file: \(error.localizedDescription, privacy: .public). Backup data used.")
+        }
+    }
+    
+    @MainActor
+    func saveTempResident() async {
+        let dataToSave = TempResidentData(wasTemporaryResident: self.wasTemporaryResident, tempResidentDate: self.tempResidentDate)
+        do {
+            let fileURL = try TravelData.getTempResidentFileURL()
+            try await Task.detached(priority: .background) {
+                let data = try JSONEncoder().encode(dataToSave)
+                try data.write(to: fileURL, options: [.atomic, .completeFileProtection])
+            }.value
+            Self.logger.info("Temp resident saved successfully")
+        } catch {
+            Self.logger.error("Unable to save temp resident: \(error.localizedDescription, privacy: .public)")
+        }
+    }
+}
+
+struct TempResidentData: Codable {
+    var wasTemporaryResident: Bool
+    var tempResidentDate: Date
 }

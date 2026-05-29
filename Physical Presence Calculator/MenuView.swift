@@ -36,6 +36,9 @@ struct MenuView: View {
                     Section {
                         menuRow(icon: "calendar", iconBgColor: .blue, title: "PR Date", value: travelData.initDate.toString(style: .long))
                         menuRow(icon: "clock.fill", iconBgColor: .purple, title: "Time as PR", value: "\(travelData.daysSincePR() ?? 0) Days")
+                        if travelData.wasTemporaryResident {
+                            menuRow(icon: "person.badge.key.fill", iconBgColor: .purple, title: "Pre-PR Start", value: travelData.tempResidentDate.toString(style: .long))
+                        }
                         menuRow(icon: "pencil", iconBgColor: .orange, title: "Edit Details") {
                             isEditing = true
                         }

@@ -206,4 +206,63 @@ final class Physical_Presence_CalculatorTests: XCTestCase {
         let targetDate = dateToReturn(travelData: travelData)
         XCTAssertGreaterThanOrEqual(targetDate, Date.now.strippedTime)
     }
+    
+    func testDaysInCanadaWithTemporaryResident() {
+        let calendar = Calendar.current
+        let nowStripped = Date.now.strippedTime
+        
+        // PR is today - 100 days
+        guard let prDate = calendar.date(byAdding: .day, value: -100, to: nowStripped),
+              // Temp resident is today - 300 days (pre-PR period is 200 days)
+              let tempResidentDate = calendar.date(byAdding: .day, value: -300, to: nowStripped) else {
+            XCTFail("Failed to generate test dates")
+            return
+        }
+        
+        travelData.initDate = prDate
+        travelData.wasTemporaryResident = true
+        travelData.tempResidentDate = tempResidentDate
+        travelData.travels = []
+        
+        // Calculate days with citizenship goal
+        let days = daysInCanada(travelData: travelData, referenceDate: nowStripped, goal: .citizenship)
+        
+        // Post-PR period: day -100 to 0 inclusive (101 days). No travels, so 101 days present at 1.0 = 101.0 credit.
+        // Pre-PR period: day -300 to -101 inclusive (200 days). No travels, so 200 days present at 0.5 = 100.0 credit.
+        // Capped pre-PR credit = min(365.0, 100.0) = 100.0.
+        // Total credit = 101 + 100 = 201 days.
+        XCTAssertEqual(days, 201)
+        
+        // With PR goal, it should ignore pre-PR completely
+        let prDays = daysInCanada(travelData: travelData, referenceDate: nowStripped, goal: .pr)
+        // With PR goal: day -100 to 0 inclusive (101 days).
+        XCTAssertEqual(prDays, 101)
+    }
+    
+    func testDaysInCanadaTemporaryResidentCreditCap() {
+        let calendar = Calendar.current
+        let nowStripped = Date.now.strippedTime
+        
+        // PR is today - 100 days
+        guard let prDate = calendar.date(byAdding: .day, value: -100, to: nowStripped),
+              // Temp resident is today - 1000 days (pre-PR period is 900 days)
+              let tempResidentDate = calendar.date(byAdding: .day, value: -1000, to: nowStripped) else {
+            XCTFail("Failed to generate test dates")
+            return
+        }
+        
+        travelData.initDate = prDate
+        travelData.wasTemporaryResident = true
+        travelData.tempResidentDate = tempResidentDate
+        travelData.travels = []
+        
+        // Calculate days with citizenship goal
+        let days = daysInCanada(travelData: travelData, referenceDate: nowStripped, goal: .citizenship)
+        
+        // Post-PR period: day -100 to 0 inclusive (101 days). credit = 101.0.
+        // Pre-PR period: day -1000 to -101 (900 days). No travels, so 900 days present at 0.5 = 450.0 credit.
+        // Capped pre-PR credit = min(365.0, 450.0) = 365.0.
+        // Total credit = 101 + 365 = 466 days.
+        XCTAssertEqual(days, 466)
+    }
 }

@@ -276,6 +276,77 @@ struct OnboardingView: View {
             .background(RoundedRectangle(cornerRadius: 24).fill(Color(uiColor: .secondarySystemGroupedBackground)))
             .shadow(color: .black.opacity(0.03), radius: 10, y: 4)
             
+            // Temporary Residence Card
+            VStack(spacing: 16) {
+                HStack(spacing: 12) {
+                    Image(systemName: "person.badge.key")
+                        .font(.title2)
+                        .foregroundStyle(.purple)
+                    
+                    Text("Pre-PR Status")
+                        .font(.headline)
+                        .foregroundStyle(.primary)
+                    
+                    Spacer()
+                }
+                .padding(.horizontal, 8)
+                
+                Toggle(isOn: $travelData.wasTemporaryResident.animation(.spring())) {
+                    VStack(alignment: .leading, spacing: 4) {
+                        Text("Temporary Resident before PR")
+                            .font(.subheadline)
+                            .fontWeight(.semibold)
+                        Text("Held study/work permit or visitor visa")
+                            .font(.caption)
+                            .foregroundStyle(.secondary)
+                    }
+                }
+                .padding(.horizontal, 8)
+                
+                if travelData.wasTemporaryResident {
+                    Divider()
+                    
+                    DatePicker(
+                        "Status Start Date",
+                        selection: $travelData.tempResidentDate,
+                        in: ...travelData.initDate,
+                        displayedComponents: [.date]
+                    )
+                    .environment(\.timeZone, TimeZone(identifier: "Canada/Central") ?? TimeZone.current)
+                    .padding(4)
+                    .background(RoundedRectangle(cornerRadius: 12).fill(Color(uiColor: .systemGroupedBackground)))
+                    
+                    HStack {
+                        Text("Selected Start Date:")
+                            .font(.subheadline)
+                            .foregroundStyle(.secondary)
+                        Spacer()
+                        Text(travelData.tempResidentDate.toString(style: .long))
+                            .font(.subheadline)
+                            .fontWeight(.bold)
+                            .foregroundStyle(.purple)
+                    }
+                    .padding(.horizontal, 8)
+                    
+                    VStack(alignment: .leading, spacing: 8) {
+                        HStack(alignment: .top, spacing: 6) {
+                            Image(systemName: "info.circle.fill")
+                                .foregroundStyle(.purple)
+                                .font(.caption)
+                                .padding(.top, 2)
+                            Text("Each day in Canada as a temporary resident counts as 0.5 days toward your citizenship requirement, up to a maximum of 365 days.")
+                                .font(.caption2)
+                                .foregroundStyle(.secondary)
+                        }
+                    }
+                    .padding(12)
+                    .background(RoundedRectangle(cornerRadius: 12).fill(Color.purple.opacity(0.05)))
+                }
+            }
+            .padding(16)
+            .background(RoundedRectangle(cornerRadius: 24).fill(Color(uiColor: .secondarySystemGroupedBackground)))
+            .shadow(color: .black.opacity(0.03), radius: 10, y: 4)
+            
             Spacer(minLength: 20)
             
             // Complete Button

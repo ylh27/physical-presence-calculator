@@ -7,16 +7,6 @@
 
 import SwiftUI
 
-enum TrackingGoal: String, CaseIterable, Identifiable {
-    case pr = "PR Status"
-    case citizenship = "Citizenship"
-    var id: String { self.rawValue }
-    
-    var targetDays: Int {
-        self == .pr ? 730 : 1095
-    }
-}
-
 struct MainView: View {
     @ObservedObject var travelData: TravelData
     
@@ -25,7 +15,7 @@ struct MainView: View {
 
     // Compute presence days using the current instance's travelData when needed
     var totalPresenceDays: Int {
-        daysInCanada(travelData: travelData, referenceDate: Date.now)
+        daysInCanada(travelData: travelData, referenceDate: Date.now, goal: selectedGoal)
     }
 
     var body: some View {
@@ -271,11 +261,38 @@ struct MainView: View {
     
     var statusMessage: String {
         let remaining = Int(selectedGoal.targetDays - totalPresenceDays)
+        
         if remaining <= 0 {
+            if selectedGoal == .pr {
+                let calendar = Calendar.current
+                let nowStripped = Date.now.strippedTime
+                
+                let firstNonCompliantDate = dateToReturn(travelData: travelData)
+                if let lastCompliantDate = calendar.date(byAdding: .day, value: -1, to: firstNonCompliantDate),
+                   lastCompliantDate >= nowStripped {
+                    return "🎉 You have met the physical presence requirement for PR Status! If you remain outside Canada, your status will be maintained until \(lastCompliantDate.toString(style: .long))."
+                } else {
+                    return "🎉 You have met the physical presence requirement for PR Status!"
+                }
+            }
             return "🎉 You have met the physical presence requirement for \(selectedGoal.rawValue)!"
-        } else {
-            return "You need \(remaining) more days in Canada to qualify for \(selectedGoal.rawValue)."
         }
+        
+        if selectedGoal == .pr {
+            let calendar = Calendar.current
+            let nowStripped = Date.now.strippedTime
+            if let fiveYearDeadline = calendar.date(byAdding: .year, value: 5, to: travelData.initDate),
+               nowStripped <= fiveYearDeadline {
+                let returnDate = dateToReturn(travelData: travelData)
+                if returnDate >= nowStripped {
+                    return "✈️ You must return to Canada by \(returnDate.toString(style: .long)) to maintain your PR Status (need \(remaining) more days)."
+                } else {
+                    return "⚠️ It is no longer possible to meet the 730-day residency requirement within your first 5 years."
+                }
+            }
+        }
+        
+        return "You need \(remaining) more days in Canada to qualify for \(selectedGoal.rawValue)."
     }
 }
 

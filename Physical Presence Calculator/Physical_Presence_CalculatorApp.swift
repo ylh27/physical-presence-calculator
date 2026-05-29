@@ -17,6 +17,7 @@ struct Physical_Presence_CalculatorApp: App {
                 .task {
                     await travelData.load()
                     await travelData.loadDate()
+                    await travelData.loadTempResident()
                 }
                 .onChange(of: travelData.travels) { _, _ in
                     Task {
@@ -31,6 +32,16 @@ struct Physical_Presence_CalculatorApp: App {
                 .onChange(of: travelData.initDate) { _, _ in
                     Task {
                         await travelData.saveDate()
+                    }
+                }
+                .onChange(of: travelData.wasTemporaryResident) { _, _ in
+                    Task {
+                        await travelData.saveTempResident()
+                    }
+                }
+                .onChange(of: travelData.tempResidentDate) { _, _ in
+                    Task {
+                        await travelData.saveTempResident()
                     }
                 }
         }

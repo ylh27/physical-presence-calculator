@@ -7,7 +7,7 @@
 
 import Foundation
 
-// TODO: implement exemptions
+// Exemptions are implemented using calendar day checking.
 
 /// Calculates physical presence days in Canada within a rolling 5-year window.
 func daysInCanada(travelData: TravelData, referenceDate: Date) -> Int {
@@ -22,43 +22,66 @@ func daysInCanada(travelData: TravelData, referenceDate: Date) -> Int {
         startDate = travelData.initDate
     }
     
-    var entry = refDateStripped
-    var exit = refDateStripped
-    var tot = 0
-    
-    for travel in travelData.travels {
-        let travelDate = travel.date.strippedTime
-        if travelDate > refDateStripped {
-            continue
-        }
-        
-        if exit == startDate {
-            break
-        }
-        
-        if travel.entry {
-            if travelDate < startDate {
-                break
-            }
-            entry = travelDate
-        } else {
-            if travelDate < startDate {
-                exit = startDate
-            } else {
-                exit = travelDate
-            }
-        }
-        
-        if exit < entry {
-            if let days = calendar.dateComponents([.day], from: exit, to: entry).day {
-                tot += days
-            }
-        }
+    if startDate > refDateStripped {
+        return 0
     }
     
-    let totalDays = calendar.dateComponents([.day], from: startDate, to: refDateStripped).day ?? 0
-    return totalDays - tot
+    // Sort travels in ascending order (earliest first).
+    // For same-day travels, departures come before entries, so the final state on that day is in-Canada.
+    let sortedTravels = travelData.travels.sorted { t1, t2 in
+        if t1.date.strippedTime == t2.date.strippedTime {
+            return !t1.entry && t2.entry
+        }
+        return t1.date < t2.date
+    }
+    
+    var presenceDays = 0
+    
+    // Iterate through every single calendar day from startDate to refDateStripped (inclusive)
+    var currentDay = startDate
+    while currentDay <= refDateStripped {
+        let currentDayStripped = currentDay.strippedTime
+        
+        // Check if there are any travel events on this day
+        let eventsOnDay = sortedTravels.filter { $0.date.strippedTime == currentDayStripped }
+        
+        if !eventsOnDay.isEmpty {
+            // Under CBSA guidelines, any part of a day spent in Canada counts as a full day of presence.
+            // Since there is a travel event (arrival or departure) on this day, the user spent part of it in Canada.
+            presenceDays += 1
+        } else {
+            // Find the most recent travel event before this day
+            let priorEvents = sortedTravels.filter { $0.date.strippedTime < currentDayStripped }
+            if let lastPriorEvent = priorEvents.last {
+                if lastPriorEvent.entry {
+                    // Last event was an arrival -> user is in Canada
+                    presenceDays += 1
+                } else {
+                    // Last event was a departure -> user is outside Canada (absent)
+                    // Check if this absence is exempt
+                    let isExempt = travelData.exemptions.contains { exemption in
+                        currentDayStripped >= exemption.startDate.strippedTime &&
+                        currentDayStripped <= exemption.endDate.strippedTime
+                    }
+                    if isExempt {
+                        presenceDays += 1
+                    }
+                }
+            } else {
+                // No prior travel events. By default, the user is in Canada starting from their PR initDate.
+                presenceDays += 1
+            }
+        }
+        
+        guard let nextDay = calendar.date(byAdding: .day, value: 1, to: currentDay) else {
+            break
+        }
+        currentDay = nextDay
+    }
+    
+    return presenceDays
 }
+
 
 /// Calculates the target date of compliance return, avoiding potential out of bounds crashes.
 func dateToReturn(travelData: TravelData) -> Date {

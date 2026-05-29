@@ -19,7 +19,7 @@ struct ContentView: View {
             
             TravelList(travelData: travelData)
                 .tabItem {
-                    Label("Travel Record", systemImage: "list.bullet")
+                    Label("Records", systemImage: "list.bullet")
                 }
             
             MenuView(travelData: travelData)

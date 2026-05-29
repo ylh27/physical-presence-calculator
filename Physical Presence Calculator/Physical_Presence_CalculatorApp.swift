@@ -23,6 +23,11 @@ struct Physical_Presence_CalculatorApp: App {
                         await travelData.save()
                     }
                 }
+                .onChange(of: travelData.exemptions) { _, _ in
+                    Task {
+                        await travelData.save()
+                    }
+                }
                 .onChange(of: travelData.initDate) { _, _ in
                     Task {
                         await travelData.saveDate()

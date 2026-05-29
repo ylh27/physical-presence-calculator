@@ -22,6 +22,7 @@ class TravelData: ObservableObject {
                transport: "car",
                date: Date.from(yyyymmdd: "2020-01-01") ?? Date()),
     ]
+    @Published var exemptions: [Exemption] = []
     
     @MainActor
     func add(travel: Travel) {
@@ -34,6 +35,17 @@ class TravelData: ObservableObject {
         travels.removeAll { $0.id == travel.id }
     }
     
+    @MainActor
+    func addExemption(exemption: Exemption) {
+        exemptions.append(exemption)
+        exemptions.sort { $0.startDate > $1.startDate } // decreasing order
+    }
+    
+    @MainActor
+    func removeExemption(exemption: Exemption) {
+        exemptions.removeAll { $0.id == exemption.id }
+    }
+    
     private static func getTravelsFileURL() throws -> URL {
         FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
             .appendingPathComponent("travels.json")
@@ -42,6 +54,11 @@ class TravelData: ObservableObject {
     private static func getDateFileURL() throws -> URL {
         FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
             .appendingPathComponent("initDate.json")
+    }
+    
+    private static func getExemptionsFileURL() throws -> URL {
+        FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+            .appendingPathComponent("exemptions.json")
     }
     
     @MainActor
@@ -61,11 +78,28 @@ class TravelData: ObservableObject {
         } catch {
             Self.logger.warning("Failed to load travels from file: \(error.localizedDescription, privacy: .public). Backup data used.")
         }
+        
+        do {
+            let fileURL = try TravelData.getExemptionsFileURL()
+            let loadedExemptions = try await Task.detached(priority: .background) { () -> [Exemption] in
+                guard FileManager.default.fileExists(atPath: fileURL.path) else {
+                    throw CocoaError(.fileReadNoSuchFile)
+                }
+                let data = try Data(contentsOf: fileURL)
+                return try JSONDecoder().decode([Exemption].self, from: data)
+            }.value
+            
+            self.exemptions = loadedExemptions
+            Self.logger.info("Exemptions loaded: \(loadedExemptions.count)")
+        } catch {
+            Self.logger.warning("Failed to load exemptions from file: \(error.localizedDescription, privacy: .public).")
+        }
     }
     
     @MainActor
     func save() async {
         let travelsToSave = self.travels
+        let exemptionsToSave = self.exemptions
         do {
             let fileURL = try TravelData.getTravelsFileURL()
             try await Task.detached(priority: .background) {
@@ -75,6 +109,17 @@ class TravelData: ObservableObject {
             Self.logger.info("Travel list saved successfully")
         } catch {
             Self.logger.error("Unable to save travels: \(error.localizedDescription, privacy: .public)")
+        }
+        
+        do {
+            let fileURL = try TravelData.getExemptionsFileURL()
+            try await Task.detached(priority: .background) {
+                let data = try JSONEncoder().encode(exemptionsToSave)
+                try data.write(to: fileURL, options: [.atomic, .completeFileProtection])
+            }.value
+            Self.logger.info("Exemptions saved successfully")
+        } catch {
+            Self.logger.error("Unable to save exemptions: \(error.localizedDescription, privacy: .public)")
         }
     }
     

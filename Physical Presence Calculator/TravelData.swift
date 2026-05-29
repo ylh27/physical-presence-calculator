@@ -11,17 +11,8 @@ import OSLog
 class TravelData: ObservableObject {
     private static let logger = Logger(subsystem: Bundle.main.bundleIdentifier ?? "com.physicalpresence.calculator", category: "TravelData")
     
-    @Published var initDate: Date = Date.from(yyyymmdd: "2020-01-01")?.strippedTime ?? Date()
-    @Published var travels: [Travel] = [
-        Travel(entry: true,
-               port: "Greenside",
-               transport: "ferry",
-               date: Date.from(yyyymmdd: "2020-06-01") ?? Date()),
-        Travel(entry: false,
-               port: "Hapwich",
-               transport: "car",
-               date: Date.from(yyyymmdd: "2020-01-01") ?? Date()),
-    ]
+    @Published var initDate: Date = Date().strippedTime
+    @Published var travels: [Travel] = []
     @Published var exemptions: [Exemption] = []
     
     @MainActor
@@ -46,25 +37,107 @@ class TravelData: ObservableObject {
         exemptions.removeAll { $0.id == exemption.id }
     }
     
+    private static func getDirectoryURL() -> URL {
+        if let ubiquityURL = FileManager.default.url(forUbiquityContainerIdentifier: nil) {
+            let documentsURL = ubiquityURL.appendingPathComponent("Documents")
+            if !FileManager.default.fileExists(atPath: documentsURL.path) {
+                do {
+                    try FileManager.default.createDirectory(at: documentsURL, withIntermediateDirectories: true, attributes: nil)
+                } catch {
+                    logger.error("Failed to create iCloud Documents directory: \(error.localizedDescription, privacy: .public)")
+                }
+            }
+            return documentsURL
+        } else {
+            return FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+        }
+    }
+    
+    private static func downloadUbiquitousFileIfNeeded(at url: URL) async {
+        var isUbiquitous = false
+        if FileManager.default.fileExists(atPath: url.path) {
+            isUbiquitous = FileManager.default.isUbiquitousItem(at: url)
+        } else {
+            isUbiquitous = true
+        }
+        
+        guard isUbiquitous else { return }
+        
+        do {
+            let values = try url.resourceValues(forKeys: [.ubiquitousItemDownloadingStatusKey])
+            if let status = values.ubiquitousItemDownloadingStatus, status != .current {
+                try FileManager.default.startDownloadingUbiquitousItem(at: url)
+                for _ in 0..<50 { // Max 5 seconds
+                    let currentValues = try url.resourceValues(forKeys: [.ubiquitousItemDownloadingStatusKey])
+                    if currentValues.ubiquitousItemDownloadingStatus == .current {
+                        logger.info("Successfully downloaded ubiquitous file: \(url.lastPathComponent)")
+                        return
+                    }
+                    try await Task.sleep(nanoseconds: 100_000_000) // 100ms
+                }
+                logger.warning("iCloud download timed out for \(url.lastPathComponent)")
+            }
+        } catch {
+            // First launch, or file doesn't exist yet
+        }
+    }
+    
+    private static func migrateLocalFilesToiCloudIfNeeded() {
+        guard let ubiquityURL = FileManager.default.url(forUbiquityContainerIdentifier: nil) else {
+            return
+        }
+        let iCloudDocsURL = ubiquityURL.appendingPathComponent("Documents")
+        let localDocsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+        
+        let fileNames = ["travels.json", "exemptions.json", "initDate.json"]
+        
+        if !FileManager.default.fileExists(atPath: iCloudDocsURL.path) {
+            do {
+                try FileManager.default.createDirectory(at: iCloudDocsURL, withIntermediateDirectories: true, attributes: nil)
+            } catch {
+                logger.error("Failed to create iCloud Documents directory for migration: \(error.localizedDescription, privacy: .public)")
+                return
+            }
+        }
+        
+        for fileName in fileNames {
+            let localURL = localDocsURL.appendingPathComponent(fileName)
+            let iCloudURL = iCloudDocsURL.appendingPathComponent(fileName)
+            
+            if FileManager.default.fileExists(atPath: localURL.path) {
+                if !FileManager.default.fileExists(atPath: iCloudURL.path) {
+                    do {
+                        try FileManager.default.copyItem(at: localURL, to: iCloudURL)
+                        logger.info("Migrated \(fileName, privacy: .public) to iCloud.")
+                    } catch {
+                        logger.error("Failed to copy \(fileName, privacy: .public) to iCloud: \(error.localizedDescription, privacy: .public)")
+                    }
+                }
+            }
+        }
+    }
+    
     private static func getTravelsFileURL() throws -> URL {
-        FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
-            .appendingPathComponent("travels.json")
+        getDirectoryURL().appendingPathComponent("travels.json")
     }
     
     private static func getDateFileURL() throws -> URL {
-        FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
-            .appendingPathComponent("initDate.json")
+        getDirectoryURL().appendingPathComponent("initDate.json")
     }
     
     private static func getExemptionsFileURL() throws -> URL {
-        FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
-            .appendingPathComponent("exemptions.json")
+        getDirectoryURL().appendingPathComponent("exemptions.json")
     }
     
     @MainActor
     func load() async {
+        await Task.detached(priority: .background) {
+            Self.migrateLocalFilesToiCloudIfNeeded()
+        }.value
+        
         do {
             let fileURL = try TravelData.getTravelsFileURL()
+            await TravelData.downloadUbiquitousFileIfNeeded(at: fileURL)
             let loadedTravels = try await Task.detached(priority: .background) { () -> [Travel] in
                 guard FileManager.default.fileExists(atPath: fileURL.path) else {
                     throw CocoaError(.fileReadNoSuchFile)
@@ -81,6 +154,7 @@ class TravelData: ObservableObject {
         
         do {
             let fileURL = try TravelData.getExemptionsFileURL()
+            await TravelData.downloadUbiquitousFileIfNeeded(at: fileURL)
             let loadedExemptions = try await Task.detached(priority: .background) { () -> [Exemption] in
                 guard FileManager.default.fileExists(atPath: fileURL.path) else {
                     throw CocoaError(.fileReadNoSuchFile)
@@ -127,6 +201,7 @@ class TravelData: ObservableObject {
     func loadDate() async {
         do {
             let fileURL = try TravelData.getDateFileURL()
+            await TravelData.downloadUbiquitousFileIfNeeded(at: fileURL)
             let loadedDate = try await Task.detached(priority: .background) { () -> Date in
                 guard FileManager.default.fileExists(atPath: fileURL.path) else {
                     throw CocoaError(.fileReadNoSuchFile)

@@ -9,8 +9,8 @@ import Foundation
 
 struct Exemption: Identifiable, Hashable, Codable {
     var id = UUID()
-    var startDate = Date.from(yyyymmdd: "2020-01-01") ?? Date()
-    var endDate = Date.from(yyyymmdd: "2020-12-01") ?? Date()
+    var startDate = Date()
+    var endDate = Date()
     var reason = "Accompanying a Canadian Citizen (Spouse/Partner/Parent)"
     
     var symbol: String {

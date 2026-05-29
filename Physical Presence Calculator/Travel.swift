@@ -12,7 +12,7 @@ struct Travel: Identifiable, Hashable, Codable {
     var entry = false
     var port = "Montréal"
     var transport = "airplane"
-    var date = Date.from(yyyymmdd: "2020-01-01") ?? Date()
+    var date = Date()
     
     var symbol: String {
         if entry {

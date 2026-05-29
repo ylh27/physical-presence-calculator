@@ -26,6 +26,7 @@
 		65CDC4522CA3ADE6004337F8 /* Compliance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65CDC4512CA3ADE1004337F8 /* Compliance.swift */; };
 		65CDC4542CA3B241004337F8 /* Exemption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65CDC4532CA3B241004337F8 /* Exemption.swift */; };
 		65E30D902B3EA70B00D06A06 /* InitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65E30D8F2B3EA70B00D06A06 /* InitView.swift */; };
+		65E30D922B3EA70B00D06A06 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65E30D912B3EA70B00D06A06 /* OnboardingView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +70,7 @@
 		65CDC4512CA3ADE1004337F8 /* Compliance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Compliance.swift; sourceTree = "<group>"; };
 		65CDC4532CA3B241004337F8 /* Exemption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Exemption.swift; sourceTree = "<group>"; };
 		65E30D8F2B3EA70B00D06A06 /* InitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitView.swift; sourceTree = "<group>"; };
+		65E30D912B3EA70B00D06A06 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,6 +134,7 @@
 				65C00A6D2B3C12E9002AB87E /* MainView.swift */,
 				658526E22F3D25A400ABDF08 /* MenuView.swift */,
 				65E30D8F2B3EA70B00D06A06 /* InitView.swift */,
+				65E30D912B3EA70B00D06A06 /* OnboardingView.swift */,
 				65C00A6B2B3997CC002AB87E /* Date+Helpers.swift */,
 				65C00A402B387C2C002AB87E /* Assets.xcassets */,
 				65C00A422B387C2D002AB87E /* Physical_Presence_Calculator.entitlements */,
@@ -305,6 +308,7 @@
 				65C00A722B3C240D002AB87E /* EditView.swift in Sources */,
 				658526E32F3D25A400ABDF08 /* MenuView.swift in Sources */,
 				65E30D902B3EA70B00D06A06 /* InitView.swift in Sources */,
+				65E30D922B3EA70B00D06A06 /* OnboardingView.swift in Sources */,
 				65C00A742B3C3B07002AB87E /* Travel.swift in Sources */,
 				65C00A6E2B3C12E9002AB87E /* MainView.swift in Sources */,
 				65C00A3D2B387C2B002AB87E /* Physical_Presence_CalculatorApp.swift in Sources */,
@@ -486,11 +490,11 @@
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 14.2;
-				MARKETING_VERSION = 0.2;
+				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "ylh.Physical-Presence-Calculator";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
@@ -527,11 +531,11 @@
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 14.2;
-				MARKETING_VERSION = 0.2;
+				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "ylh.Physical-Presence-Calculator";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
